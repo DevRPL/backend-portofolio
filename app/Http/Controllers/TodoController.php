@@ -24,7 +24,7 @@ class TodoController extends Controller
         return response($data);
     }
 
-    public function personalProject() 
+    public function personalProductDevelopment() 
     {
         return response(DB::table('you_tubes')->get());
     }
@@ -66,6 +66,20 @@ class TodoController extends Controller
         return response($data);
     }
 
+
+    public function getSkill()
+    {
+        $data = DB::table('skills')->get();
+        
+        return response($data);
+    }
+
+    public function getContent()
+    {
+        $data = DB::table('contents')->get();
+        return response($data);
+    }
+
     // FEEDBACK
 
     public function getFeedback()
@@ -79,5 +93,12 @@ class TodoController extends Controller
         $data = DB::table('feedbacks')->insert($request->all());
 
         return response("success");
+    }
+    
+    public function destroyFeedback($id)
+    {
+        $data = DB::table('feedbacks')->where('id', $id)->delete();
+        
+        return response($data);
     }
 }
